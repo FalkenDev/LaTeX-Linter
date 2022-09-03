@@ -1,0 +1,13 @@
+{
+    "standard": {
+        "sentence-newline": "True",
+        "comment-space": 1,
+        "emptylines": 2 
+    },
+    "user": {
+        "sentence-newline": "False",
+        "comment-space": 11,
+        "emptylines": 22  
+    }
+    
+}
