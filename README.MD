@@ -4,7 +4,7 @@ The linter ensures common stylistic and configurable rules for TeX files and, th
 ## Content
 - [Download](#download)
 - [Usage](#usage)
-- [Platform](pPlatform)
+- [Platform](#platform)
 - [Contact](#contact)
 - [License](#license)
 ## Download
