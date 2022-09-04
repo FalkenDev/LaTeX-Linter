@@ -1,5 +1,8 @@
 """ Input Module """
 
+import fnmatch
+import os
+
 class Input():
     """
     Input class
@@ -9,10 +12,21 @@ class Input():
         """
         Init
         """
-        self.filename = "undefined"
+        self.current_file = "Undefined"
+        self.filename = "Undefined"
 
-    def load_file(self, file):
-        self.filename = "./input/" + file
+    def set_file(self, file):
+        for input_file in os.listdir('./input'):
+                if fnmatch.fnmatch(input_file, '*.tex') or fnmatch.fnmatch(input_file, '*.bib'):
+                    if file == input_file:
+                        self.current_file = str(file)
+                        self.filename = "./input/" + file
+                        return
+        # Fix so it raise a customized exception if not matching
+        return
+
+    def get_current_file(self):
+        return self.current_file
 
     def open_file(self):
         """
