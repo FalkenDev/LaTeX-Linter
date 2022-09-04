@@ -15,7 +15,7 @@ purple = '\x1b[1;35m'
 end_color = '\x1b[0m'
 
 
-def menustart():
+def menu_start(current_settings, current_file):
     """Prints the start menu"""
     print(cleen_screen)
 
@@ -24,19 +24,19 @@ def menustart():
     print(green + headerslash + end_color)
 
     print(low_dash)
-    print(green + "Choosen File:" + end_color + " Undefined") # Edit the "Undefined" string to a function or a variable.
+    print(green + " Choosen File: " + end_color + current_file) # Edit the "Undefined" string to a function or a variable.
     print("")
-    print(green + "Rules:" + end_color + " Standard") # Edit the "Standard" string to a function or a variable.
+    print(green + " Settings: " + end_color + current_settings) # Edit the "Standard" string to a function or a variable.
     print(low_dash)
 
     print('{:^40s}'.format(green + " Actions\n" + end_color))
     print(" 1 ) Change File")
-    print(" 2 ) Edit rules")
+    print(" 2 ) Settings")
     print(" 3 ) Start Lint the file / files")
     print(" q ) Exit / Close the program")
     print(low_dash + "\n")
 
-def menufile():
+def menu_file(current_file):
     """Prints the Change File menu"""
     print(cleen_screen)
 
@@ -45,7 +45,7 @@ def menufile():
     print(purple + headerslash + end_color)
 
     print(low_dash)
-    print(purple + "Choosen File:" + end_color + " Undefined") # Edit the "Undefined" string to a function or a variable.
+    print(purple + "Choosen File: " + end_color + current_file) # Edit the "Undefined" string to a function or a variable.
     print(low_dash)
 
     print(purple + "Files to choose from input foler:\n" + end_color)
@@ -64,35 +64,55 @@ def menufile():
     print(" q ) Go Back")
     print(low_dash + "\n")
 
-def menurule(data):
-    """Prints the Edit Rules menu"""
+def menu_settings(current_settings, standard_settings, customized_settings):
+    """Prints the Edit Settings menu"""
     print(cleen_screen)
 
     print(blue + headerslash + end_color)
-    print("\n Edit Rules\n")
+    print("\n Settings\n")
     print(blue + headerslash + end_color)
 
     print(low_dash)
-    print(blue + "Rules:" + end_color + " Standard") # Edit the "standard" string to a function or a variable.
+    print(blue + "Settings: " + end_color + current_settings) # Edit the "standard" string to a function or a variable.
     print(low_dash)
 
     print(low_dash)
-    print('{:^49s}'.format(green + " Standard Rules " + end_color))
-    print('{:^53s}'.format(red + "( Unable to change Standard Rules ) \n" + end_color))
-    for i in data["standard"]:
-        print(blue + " " + i + ": "+ end_color + str(data["standard"][i]))
+    print('{:^49s}'.format(green + " Standard Settings " + end_color))
+    print('{:^53s}'.format(red + "( Unable to change Standard Settings ) \n" + end_color))
+    for i in standard_settings:
+        print(blue + " " + i + ": "+ end_color + str(standard_settings[i]))
     print(low_dash)
 
     print(low_dash)
-    print('{:^49s}'.format(green + " User Rules\n" + end_color))
-    for i in data["user"]:
-        print(blue + " " + i + ": "+ end_color + str(data["user"][i]))
+    print('{:^49s}'.format(green + " Customized Settings\n" + end_color))
+    for i in customized_settings:
+        print(blue + " " + i + ": "+ end_color + str(customized_settings[i]))
     print(low_dash)
 
     print('{:^49s}'.format(blue + " Actions\n" + end_color))
-    print(" 1 ) Edit User Rules")
-    print(" 2 ) Change to Customized rules")
-    print(" 3 ) Change to Standard rules")
+    print(" 1 ) Edit Customized settings")
+    print(" 2 ) Change to Customized settings")
+    print(" 3 ) Change to Standard settings")
     print(" q ) Go Back")
     print(low_dash + "\n")
 
+def menu_customize_settings(customized_settings):
+    """ Prints the cusomized settings and gives options what to change """
+    print(cleen_screen)
+
+    print(blue + headerslash + end_color)
+    print("\n Edit Customized settings\n")
+    print(blue + headerslash + end_color)
+
+    print(low_dash)
+    print('{:^49s}'.format(green + " Customized Settings\n" + end_color))
+    for i in customized_settings:
+        print(blue + " " + i + ": "+ end_color + str(customized_settings[i]))
+    print(low_dash)
+
+    print('{:^49s}'.format(blue + " Actions\n" + end_color))
+    print(" 1 ) Edit sentence-newline")
+    print(" 2 ) Edit comment-space")
+    print(" 3 ) Edit emptylines")
+    print(" q ) Go Back")
+    print(low_dash + "\n")
