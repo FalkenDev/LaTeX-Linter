@@ -4,6 +4,7 @@ Main.py
 from src.menu import menu_start, menu_file, menu_settings, menu_customize_settings
 from src.input import Input
 from src.rules import Rules
+from src.settings import Settings
 
 cleen_screen = chr(27) + "[2J" + chr(27) + "[;H"
 green = '\x1b[1;32m'
@@ -14,10 +15,11 @@ def main():
     """
     Main
     """
-    ic = Input()
-    rc = Rules()
+    ic = Input() # Input class
+    rc = Rules() # Rules class
+    sc = Settings() # Settings class
     while True:
-        menu_start(rc.get_current_settings(), ic.get_current_file())
+        menu_start(sc.get_current_settings(), ic.get_current_file())
 
         choice = input(" Enter a action --> ")
 
@@ -55,9 +57,9 @@ def main():
             Edit rules
             """
             while True:
-                current_rule = rc.get_current_settings()
-                customized_settings = rc.get_custom_settings()
-                standard_settings = rc.get_standard_settings()
+                current_rule = sc.get_current_settings()
+                customized_settings = sc.get_custom_settings()
+                standard_settings = sc.get_standard_settings()
                 menu_settings(current_rule, standard_settings, customized_settings)
                 choiceRule = input(" Enter a action --> ")
                 try:
@@ -74,12 +76,12 @@ def main():
                                     print(" 2 ) False\n")
                                     custom_input = input(" Enter a action --> ")
                                     if custom_input == "1":
-                                        rc.edit_custom_settings("sentence-newline", True)
+                                        sc.edit_custom_settings("sentence-newline", True)
                                         print(green + "\nSetting sentence-newline has updated to: True" + end_color)
                                         input("\nPress enter to go back to Edit Customized settings menu...")
                                         break
                                     elif custom_input == "2":
-                                        rc.edit_custom_settings("sentence-newline", False)
+                                        sc.edit_custom_settings("sentence-newline", False)
                                         print(green + "\nSetting sentence-newline has updated to: False" + end_color)
                                         input("\nPress enter to go back to Edit Customized settings menu...")
                                         break
@@ -89,7 +91,7 @@ def main():
                                     print(blue + "\nEditing comment-space\n" + end_color)
                                     custom_input = input(" Enter a value --> ")
                                     if custom_input.isnumeric():
-                                        rc.edit_custom_settings("comment-space", int(custom_input))
+                                        sc.edit_custom_settings("comment-space", int(custom_input))
                                         print(green + "\nSetting comment-space has updated to: " + str(custom_input) + end_color)
                                         input("\nPress enter to go back to Edit Customized settings menu...")
                                         break
@@ -99,7 +101,7 @@ def main():
                                     print(blue + "\nEditing emptylines\n" + end_color)
                                     custom_input = input(" Enter a value --> ")
                                     if custom_input.isnumeric():
-                                        rc.edit_custom_settings("emptylines", int(custom_input))
+                                        sc.edit_custom_settings("emptylines", int(custom_input))
                                         print(green + "\nSetting emptylines has updated to: " + str(custom_input) + end_color)
                                         input("\nPress enter to go back to Edit Customized settings menu...")
                                         break
@@ -110,7 +112,7 @@ def main():
                             input("\nPress enter to go back to Edit Customized settings menu...")
 
                     elif choiceRule == "2":
-                        rc.set_settings()
+                        sc.set_settings()
                         print(green + "\nSettings has updated to use Customized Settings" + end_color)
                         input("\nPress enter to go back to main menu...")
                         break
