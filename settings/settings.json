@@ -1,1 +1,16 @@
-{"standard": {"sentence-newline": "True", "comment-space": 1, "emptylines": 2}, "customized": {"sentence-newline": true, "comment-space": 222, "emptylines": 22}}
+{
+    "standard":{
+        "sentence-newline": "True",
+        "comment-space": 1,
+        "emptylines": 2,
+        "environment_blocks_exclude": {
+            "document": "True",
+            "appendices": "True"
+        }
+        },
+        "customized": {
+            "sentence-newline": true,
+            "comment-space": 21,
+            "emptylines": 212
+        }
+}
