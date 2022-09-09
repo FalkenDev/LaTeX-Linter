@@ -58,8 +58,8 @@ def main():
             """
             while True:
                 current_rule = sc.get_current_settings()
-                customized_settings = sc.get_custom_settings()
-                standard_settings = sc.get_standard_settings()
+                customized_settings = sc.get_settings("customized")
+                standard_settings = sc.get_settings("standard")
                 menu_settings(current_rule, standard_settings, customized_settings)
                 choiceRule = input(" Enter a action --> ")
                 try:
@@ -112,7 +112,13 @@ def main():
                             input("\nPress enter to go back to Edit Customized settings menu...")
 
                     elif choiceRule == "2":
-                        sc.set_settings()
+                        sc.set_settings("customized")
+                        print(green + "\nSettings has updated to use Customized Settings" + end_color)
+                        input("\nPress enter to go back to main menu...")
+                        break
+
+                    elif choiceRule == "3":
+                        sc.set_settings("standard")
                         print(green + "\nSettings has updated to use Customized Settings" + end_color)
                         input("\nPress enter to go back to main menu...")
                         break
