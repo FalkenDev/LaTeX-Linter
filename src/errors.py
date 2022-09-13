@@ -4,3 +4,9 @@ class WrongFile(Exception):
 
 class WrongCommand(Exception):
     """ When user enters a command that dosen't exists """
+
+class AlredyExists(Exception):
+    """ If user has inputed something that alredy exists """
+
+class DontExists(Exception):
+    """ If user has inputed something that dosen't exists """
