@@ -1,0 +1,1 @@
+{"standard": {"sentence-newline": "True", "comment-space": 1, "emptylines": 2, "environment_blocks_exclude": ["document", "appendices"]}, "customized": {"sentence-newline": false, "comment-space": 3, "emptylines": 2, "environment_blocks_exclude": ["document", "appendices"]}}
