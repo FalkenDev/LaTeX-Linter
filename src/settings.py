@@ -1,16 +1,16 @@
 """ Settings Module """
 import json
-import ast
 from src.errors import AlredyExists, DontExists
 
-green = '\x1b[1;32m'
-end_color = '\x1b[0m'
+GREEN = '\x1b[1;32m'
+END_COLOR = '\x1b[0m'
 
 class Settings():
+    """ Settings class """
 
     def __init__(self, rule = "standard"):
         """
-        Init 
+        Init
         Init rule to standrad if nothing is inputed
         Init json_data to save all settings in settings.json
         """
@@ -40,7 +40,7 @@ class Settings():
 
     def set_settings(self, rule):
         """
-        Set 
+        Set
         """
         self.rule = rule
 
@@ -53,9 +53,8 @@ class Settings():
         self.json_data["customized"][rule] = custom_input
         json.dump(self.json_data, jsonfile)
         jsonfile.close()
-        self.json_data = self.__read_json() 
-        print(green + " Setting rule: " + str(rule) + " has updated to have value: " + str(custom_input) + end_color)
-        return
+        self.json_data = self.__read_json()
+        return GREEN + " Setting rule: " + str(rule) + " has updated to have value: " + str(custom_input) + END_COLOR
 
     def edit_enviroment_blocks_exclude_add(self, custom_input):
         """
@@ -70,10 +69,8 @@ class Settings():
         self.json_data["customized"]["environment_blocks_exclude"].append(custom_input)
         json.dump(self.json_data, jsonfile)
         jsonfile.close()
-        self.json_data = self.__read_json() 
-        print(green + " Setting rule: environment_blocks_exclude has added: " + str(custom_input) + " to the list." + end_color)
-        input("\n Press enter to go back to Edit Enviroment Blocks.")
-        return
+        self.json_data = self.__read_json()
+        return GREEN + " Setting rule: environment_blocks_exclude has added: " + str(custom_input) + " to the list." + END_COLOR
 
     def edit_enviroment_blocks_exclude_remove(self, custom_input):
         """
@@ -87,8 +84,6 @@ class Settings():
                 self.json_data["customized"]["environment_blocks_exclude"].remove(custom_input)
                 json.dump(self.json_data, jsonfile)
                 jsonfile.close()
-                self.json_data = self.__read_json() 
-                print(green + " Setting rule: environment_blocks_exclude has removed: " + str(custom_input) + " from the list." + end_color)
-                input("\n Press enter to go back to Edit Enviroment Blocks.")
-                return
+                self.json_data = self.__read_json()
+                return GREEN + " Setting rule: environment_blocks_exclude has removed: " + str(custom_input) + " from the list." + END_COLOR
         raise DontExists
