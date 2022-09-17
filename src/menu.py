@@ -4,7 +4,7 @@ menu.py
 
 import fnmatch
 import os
-from src.errors import WrongFile, WrongCommand, AlredyExists, DontExists
+from src.errors import WrongFile, WrongCommand, AlredyExists, DontExists, InstanceError
 
 cleen_screen = chr(27) + "[2J" + chr(27) + "[;H"
 low_dash = "_" * 40 + "\n"
@@ -122,18 +122,14 @@ def change_file_function(ic):
     """
     while True:
         menu_file(ic.get_current_file())
-        choiceFile = input(" Enter a action --> ")
+        choice_file = input(" Enter a action --> ")
         try:
-            if choiceFile == "q":
-                """
-                Go back
-                """
+            if choice_file == "q":
+                # Go back
                 break
 
-            elif choiceFile == "1":
-                """
-                Enters a specific file
-                """
+            if choice_file == "1":
+                # Enters a specific file
                 new_file = input(" Enter the file --> ")
                 ic.set_file(new_file)
                 print(green + "\n File has updated to use: " + new_file + end_color)
@@ -151,6 +147,7 @@ def change_file_function(ic):
             input("\n Press enter to go back to rule menu...")
 
 def edit_sentence_newline(settings):
+    """ Edit sentence newline function """
     while True:
         print(blue + "\n Editing sentence-newline\n" + end_color)
 
@@ -161,55 +158,64 @@ def edit_sentence_newline(settings):
         custom_input = input(" Enter a action --> ")
 
         if custom_input == "1":
-            settings.edit_custom_settings("sentence-newline", True)
+            print(settings.edit_custom_settings("sentence-newline", True))
             input("\n Press enter to go back to Settings Menu...")
             break
 
-        elif custom_input == "2":
-            settings.edit_custom_settings("sentence-newline", False)
+        if custom_input == "2":
+            print(settings.edit_custom_settings("sentence-newline", False))
             input("\n Press enter to go back to Settings Menu...")
             break
-        
-        elif custom_input == "q":
+
+        if custom_input == "q":
             break
 
         print(red + "\n That is not a valid choice." + end_color)
 
 def edit_comment_space(settings):
+    """ Edit comment space function """
     while True:
         menu_header("Editing comment-space", blue)
         print("\n Enter value of how much you want the comment-space to be")
         print("\n q ) Go back\n")
 
         custom_input = input(" Enter a value --> ")
+        try:
+            if custom_input.isnumeric():
+                print(settings.edit_custom_settings("comment-space", int(custom_input)))
+                input("\n Press enter to go back to Settings Menu...")
+                break
 
-        if custom_input.isnumeric():
-            settings.edit_custom_settings("comment-space", int(custom_input))
-            input("\n Press enter to go back to Settings Menu...")
-            break
-        
-        elif custom_input == "q":
-            break
-        
-        print(red + "\n That is not a valid choice." + end_color)
+            if custom_input == "q":
+                break
+
+            raise InstanceError
+
+        except InstanceError:
+            print(red + "\n That is not a valid choice." + end_color)
 
 def edit_emptylines(settings):
+    """ Edit emptylines function """
     while True:
         menu_header("Editing emptylines", blue)
 
         custom_input = input(" Enter a value --> ")
+        try:
+            if custom_input.isnumeric():
+                print(settings.edit_custom_settings("emptylines", int(custom_input)))
+                input("\n Press enter to go back to Edit Customized settings menu...")
+                break
 
-        if custom_input.isnumeric():
-            settings.edit_custom_settings("emptylines", int(custom_input))
-            input("\n Press enter to go back to Edit Customized settings menu...")
-            break
+            if custom_input == "q":
+                break
 
-        elif custom_input == "q":
-            break
+            raise InstanceError
 
-        print(red + "\n That is not a valid choice." + end_color)
+        except InstanceError:
+            print(red + "\n That is not a valid choice." + end_color)
 
 def edit_enviroment_blocks_exclude(settings, customized_settings):
+    """ Edit enviroment blocks exclude function """
     while True:
         menu_header("Edit Enviroment Blocks", blue)
 
@@ -229,13 +235,13 @@ def edit_enviroment_blocks_exclude(settings, customized_settings):
         try:
             if custom_input == "1":
                 user_input = input("\n Enter a name you want to exclude --> ")
-                settings.edit_enviroment_blocks_exclude_add(user_input)
-                customized_settings = settings.get_settings("customized")
+                print(settings.edit_enviroment_blocks_exclude_add(user_input))
+                input("\n Press enter to go back to Edit Enviroment Blocks.")
 
             elif custom_input == "2":
                 user_input = input("\n Enter a nem you want to remove from the exclude list --> ")
-                settings.edit_enviroment_blocks_exclude_remove(user_input)
-                customized_settings = settings.get_settings("customized")
+                print(settings.edit_enviroment_blocks_exclude_remove(user_input))
+                input("\n Press enter to go back to Edit Enviroment Blocks.")
 
             elif custom_input == "q":
                 break
@@ -249,4 +255,3 @@ def edit_enviroment_blocks_exclude(settings, customized_settings):
         except DontExists:
             print(red + "\n The name dosen't exists in Enviroment blocks exclude list" + end_color)
             input("\n Press enter to go back to Edit Enviroment Blocks")
-
