@@ -12,3 +12,4 @@ The linter ensures common stylistic and configurable rules for TeX files and, th
 ## Platform
 ## Contact
 ## License
+[![linting: pylint](https://img.shields.io/badge/linting-pylint-yellowgreen)](https://github.com/PyCQA/pylint)
