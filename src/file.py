@@ -13,19 +13,19 @@ class File():
         """
         Init current_file and filename to Undefined
         """
-        self.current_file = "Undefined"
-        self.filename = "Undefined"
+        self.current_file = "undefined"
+        self.filename = "undefined"
 
     def set_file(self, file):
         """
         Set a specific .tex file to use for the linter
         """
         for input_file in os.listdir('./input'):
-                if fnmatch.fnmatch(input_file, '*.tex'):
-                    if file == input_file:
-                        self.current_file = str(file)
-                        self.filename = "./input/" + file
-                        return
+            if fnmatch.fnmatch(input_file, '*.tex'):
+                if file == input_file:
+                    self.current_file = str(file)
+                    self.filename = "./input/" + file
+                    return
         raise WrongFile
 
     def get_current_file(self):
