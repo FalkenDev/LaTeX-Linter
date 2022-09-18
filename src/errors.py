@@ -8,8 +8,5 @@ class WrongCommand(Exception):
 class AlredyExists(Exception):
     """ If user has inputed something that alredy exists """
 
-class InstanceError(Exception):
-    """ If user has inputed wrong instance """
-
 class DontExists(Exception):
     """ If user has inputed something that dosen't exists """
