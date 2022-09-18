@@ -30,6 +30,7 @@ def main():
                 # Change file """
                 change_file_function(file_class)
 
+
             elif choice == "2":
                 # Edit rules
                 while True:
@@ -66,7 +67,10 @@ def main():
 
                                     elif change_setting == "4":
                                         # Edit Enviroment blocks exclude
-                                        edit_enviroment_blocks_exclude(settings_class, customized_settings)
+                                        edit_enviroment_blocks_exclude(
+                                            settings_class,
+                                            customized_settings
+                                        )
                                         break
 
                                     elif change_setting == "q":
@@ -76,13 +80,19 @@ def main():
 
                                 except WrongCommand:
                                     print("\n That is not a valid choice.")
-                                    input("\n Press enter to go back to Edit Customized settings menu...")
+                                    input(
+                                        "\n Press enter to go back to"
+                                        " Edit Customized settings menu..."
+                                    )
 
                         elif choice_rule == "2":
                             # Change settings to use Customized settings
                             settings_class.set_settings("customized")
 
-                            print(GREEN + "\n Settings has updated to use Customized Settings" + END_COLOR)
+                            print(
+                                GREEN + "\n Settings has updated"
+                                " to use Customized Settings" + END_COLOR
+                            )
                             input("\n Press enter to go back to main menu...")
                             break
 
@@ -90,11 +100,12 @@ def main():
                             # Change settings to use Standard settings
                             settings_class.set_settings("standard")
 
-                            print(GREEN + "\n Settings has updated to use Standard Settings" + END_COLOR)
+                            print(
+                                GREEN + "\n Settings has updated"
+                                " to use Standard Settings" + END_COLOR
+                            )
                             input("\n Press enter to go back to main menu...")
                             break
-
-                        raise WrongCommand
 
                     except WrongCommand:
                         print("\n That is not a valid choice.")
@@ -109,7 +120,8 @@ def main():
                 print(" Thank you for using FalkenDev LaTeX Linter.")
                 break
 
-            raise WrongCommand
+            else:
+                raise WrongCommand
 
         except WrongCommand:
             print("\n That is not a valid choice. Please choose from the menu.\n")
