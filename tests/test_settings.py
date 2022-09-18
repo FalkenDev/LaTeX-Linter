@@ -1,5 +1,6 @@
 """ Test module to test Settings class from settings.py"""
 import unittest
+import copy
 from src.settings import Settings
 # pylint: disable=protected-access
 
@@ -64,32 +65,40 @@ class TestSettings(unittest.TestCase):
         self.assertEqual(customized_settings["sentence-newline"], True)
 
         self.settings.edit_custom_settings("sentence-newline", False)
+        customized_settings = self.settings.get_settings("customized")
         self.assertEqual(customized_settings["sentence-newline"], False)
 
         self.tearDown()
 
-    def test_edit_comment_space(self):
+    def test_edit_comment_space_correct(self):
         """ [Edit Settings] Test edit comment space rule setting on customized settings """
         self.setUp()
 
         self.settings.edit_custom_settings("comment-space", 50)
+
         customized_settings = self.settings.get_settings("customized")
+
         self.assertEqual(customized_settings["comment-space"], 50)
         self.assertIsInstance(customized_settings["comment-space"], int)
 
+
         self.settings.edit_custom_settings("comment-space", 150)
+
         customized_settings = self.settings.get_settings("customized")
+
         self.assertEqual(customized_settings["comment-space"], 150)
         self.assertIsInstance(customized_settings["comment-space"], int)
 
         self.tearDown()
 
-    def test_edit_emptylines(self):
+    def test_edit_emptylines_correct(self):
         """ [Edit Settings] Test edit emptylines rule setting on customized settings """
         self.setUp()
 
         self.settings.edit_custom_settings("emptylines", 25)
+
         customized_settings = self.settings.get_settings("customized")
+
         self.assertEqual(customized_settings["emptylines"], 25)
         self.assertIsInstance(customized_settings["emptylines"], int)
 
@@ -99,11 +108,28 @@ class TestSettings(unittest.TestCase):
         """ [Edit Settings] Test to add a enviroment block in the list to exclude """
         self.setUp()
 
-        self.settings.edit_enviroment_blocks_exclude_remove("unittest")
-        customized_settings = self.settings.get_settings("customized")
-        print(customized_settings["environment_blocks_exclude"])
-        self.assertIsInstance(customized_settings["environment_blocks_exclude"], object)
+        before = copy.copy(self.settings.get_settings("customized")["environment_blocks_exclude"])
+
         self.settings.edit_enviroment_blocks_exclude_add("unittest")
-        print(customized_settings["environment_blocks_exclude"])
+
+        after = self.settings.get_settings("customized")
+
+        self.assertIsInstance(after["environment_blocks_exclude"], object)
+        self.assertNotEqual(before, after["environment_blocks_exclude"])
+
+        self.tearDown()
+
+    def test_remove_enviroment_blocks_exclude(self):
+        """ [Edit Settings] Test to remove a enviroment block in the list to exclude """
+        self.setUp()
+
+        before = copy.copy(self.settings.get_settings("customized")["environment_blocks_exclude"])
+
+        self.settings.edit_enviroment_blocks_exclude_remove("unittest")
+
+        after = self.settings.get_settings("customized")
+
+        self.assertIsInstance(after["environment_blocks_exclude"], object)
+        self.assertNotEqual(after["environment_blocks_exclude"], before)
 
         self.tearDown()
