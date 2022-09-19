@@ -1,5 +1,7 @@
 # LaTeX-Linter
-![alt text](https://github.com/FalkenDev/LaTeX-Linter/blob/main/linter.png?raw=true)
+
+![falken](https://github.com/FalkenDev/LaTeX-Linter/blob/main/linter.png?raw=true)
+
 The linter ensures common stylistic and configurable rules for TeX files and, therefore, eases the discussion on, merging, and exchange of TeX content. The software is going to written in Python and used in terminal to terminate the tasks.
 
 ## Content
