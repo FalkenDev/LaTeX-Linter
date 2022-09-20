@@ -1,11 +1,12 @@
 """
 Main.py
 """
+from fileinput import filename
 from src.menu import menu_start, menu_settings, menu_customize_settings, edit_sentence_newline, edit_comment_space, edit_emptylines, edit_enviroment_blocks_exclude, change_file_function
 from src.file import File
-#from src.rules import Rules
+from src.rules import Rules
 from src.settings import Settings
-from src.errors import WrongCommand
+from src.errors import WrongCommand, ErrorDataLoaded
 
 cleen_screen = chr(27) + "[2J" + chr(27) + "[;H"
 GREEN = '\x1b[1;32m'
@@ -17,7 +18,6 @@ def main():
     Main
     """
     file_class = File() # File class
-    #rules_class = Rules() # Rules class
     settings_class = Settings() # Settings class
 
     while True:
@@ -112,8 +112,15 @@ def main():
                         input("\n Press enter to go back to rule menu...")
 
             elif choice == "3":
-                # Linter
-                break
+                try:
+                    filename = "main.tex"
+                    current_file = "./input/main.tex"
+                    settings_json_data = settings_class.get_settings(settings_class.get_current_settings())
+                    Rules(filename, current_file, settings_json_data)
+                    break
+                except ErrorDataLoaded:
+                    print("\n The file and settings have not been loaded correctly!")
+                    input("\n Press enter to go back to rule menu...")
 
             elif choice == "q":
                 # Exit the program
