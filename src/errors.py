@@ -10,3 +10,6 @@ class AlredyExists(Exception):
 
 class DontExists(Exception):
     """ If user has inputed something that dosen't exists """
+
+class ErrorDataLoaded(Exception):
+    """ If settings.json is not loaded correctly """
