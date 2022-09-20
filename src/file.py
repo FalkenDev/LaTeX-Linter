@@ -34,12 +34,8 @@ class File():
         """
         return self.current_file
 
-    def open_file(self):
+    def get_current_filename(self):
         """
-        Open the file
+        Returns full path to file
         """
-        with open(self.filename) as filehandle:
-            line = filehandle.read()
-
-        # print the line read from the file
-        print(line)
+        return self.filename
