@@ -1,1 +1,1 @@
-{"standard": {"sentence-newline": "True", "comment-space": 1, "emptylines": 4, "environment_blocks_exclude": ["document", "appendices"]}, "customized": {"sentence-newline": false, "comment-space": 150, "emptylines": 25, "environment_blocks_exclude": ["document", "appendices"]}}
+{"standard": {"sentence-newline": true, "comment-space": 1, "emptylines": 4, "environment_blocks_exclude": ["document", "appendices"]}, "customized": {"sentence-newline": false, "comment-space": 150, "emptylines": 25, "environment_blocks_exclude": ["document", "appendices", "test2"]}}
