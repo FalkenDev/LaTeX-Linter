@@ -1,7 +1,6 @@
 """
 Main.py
 """
-from fileinput import filename
 from src.menu import menu_start, menu_settings, menu_customize_settings, edit_sentence_newline, edit_comment_space, edit_emptylines, edit_enviroment_blocks_exclude, change_file_function
 from src.file import File
 from src.rules import Rules
