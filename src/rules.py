@@ -1,7 +1,5 @@
 """ Rules Module """
 
-from itertools import count
-from unittest import skip
 from src.errors import ErrorDataLoaded
 import shutil
 
@@ -17,9 +15,9 @@ class Rules():
             raise ErrorDataLoaded
 
         self.backup_file() # Done
-        #self.rule_emptylines() # Done
-        #self.rule_environment_blocks_exclude() # Done
-        self.rule_comment_space() # Doing
+        self.rule_emptylines() # Done
+        self.rule_environment_blocks_exclude() # Done
+        self.rule_comment_space() # Almost Done
 
     def get_specific_settings(self, rule):
         """ Returns the specific setting rule """
@@ -82,7 +80,6 @@ class Rules():
         for line in line_number_list:
             l1.insert(line + append_line, "\n")
             append_line = append_line + 1                                                           # Needs a append line bcs after every "\n" appended then it creates 1 more extra line
-
 
         with open(self.file_path, "w") as file:
             l1 = "".join(l1)
@@ -184,3 +181,34 @@ class Rules():
         """ Rule Comment Space """
 
         space_value = self.get_specific_settings("comment-space") # Get settings
+        space_index_list = []
+
+        with open(self.file_path, "r") as FILE:
+            for line_number, line in enumerate(FILE, start=1):
+                if "%" in line:
+                    found_percent = False
+                    precent_index = 0
+                    after_precent_string=""
+                    for char_index, char in enumerate(line, start=1):
+                        if char_index is 2 and char.startswith("-") or char_index is 2 and char.startswith("%"):
+                            found_percent = False
+                            break
+
+                        if char is "%":
+                            found_percent = True
+                            precent_index = char_index
+
+                    if found_percent:
+                        space_index_list.append([line_number, line, precent_index])
+
+        l1 = []
+        with open(self.file_path, 'r') as fp:
+            l1 = fp.readlines()
+
+        for line in space_index_list:
+            l1[line[0] - 1] = line[1][:line[2]] + (" " * space_value) + line[1][line[2]:]
+        
+        with open(self.file_path, "w") as file:
+            l1 = "".join(l1)
+            file.write(l1)
+
