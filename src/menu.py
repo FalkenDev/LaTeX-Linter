@@ -239,7 +239,7 @@ def edit_enviroment_blocks_exclude(settings, customized_settings):
 
         print(
             " Here you can choose if you want to exclude a"
-            " enviroment block from /begin[itemize] or remove it from the exclude list\n"
+            " enviroment block from example /part[itemize] or remove it from the exclude list\n"
         )
         print(" 1 ) Add a new Enviroment block to exclude")
         print(" 2 ) Remove a Enviroment block from exclude list")
