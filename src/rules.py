@@ -96,7 +96,7 @@ class Rules():
 
     def replace_line_function(self, rule_include, setting_value):
         """ Find the index number and ignores it """
-        newline = "\n"
+        newline = self.newline
         line_number_list_remove = []
         with open(self.file_path, "r", encoding="utf-8") as files:
             for line_number, line in enumerate(files, start=1):
