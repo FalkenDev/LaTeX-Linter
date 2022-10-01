@@ -1,6 +1,7 @@
 """ Rules Module """
 
 import shutil
+from sys import platform
 from src.errors import ErrorDataLoaded
 
 # pylint: disable=line-too-long
@@ -10,6 +11,11 @@ class Rules():
     def __init__(self, filename = "undefined", file_path = "undefined", json_settings_data = None):
         self.filename = filename    # File name
         self.file_path = file_path  # File path
+
+        if platform in ("linux", "linux2", "darwin"):
+            self.newline = "\n"
+        elif platform == "win32":
+            self.newline = "\r\n"
 
         self.json_settings_data = json_settings_data # Json Settings
 
@@ -38,7 +44,7 @@ class Rules():
         # WORKS : Needs improvement with the code!
 
         setting_value = self.get_specific_settings("emptylines")
-        newline = "\n"
+        newline = self.newline
 
         rule_include = [
             r"\part{",
@@ -132,7 +138,7 @@ class Rules():
 
         word = r"\begin{" # Word to look after
         tab = "\t"
-        newline = "\n"
+        newline = self.newline
 
         setting_exclude_string_list = []
         tab_index_list = []
@@ -177,7 +183,10 @@ class Rules():
                             begin_counter -= 1
                             line_counter += 1
                         else:                                                                # If it dosen't have correct \t ( Tab space )
-                            tab_index_list.append([(line_number + line_counter), (begin_counter * tab), (content[line_number + line_counter].strip())])
+                            tab_index_list.append([
+                                (line_number + line_counter),
+                                (begin_counter * tab),
+                                (content[line_number + line_counter].strip())])
                             line_counter += 1
 
                     counter = line_number + line_counter                                                                                                              # How many index position the program have checked after the while loop
@@ -236,7 +245,7 @@ class Rules():
         """ Rule sentence newline for better git suppourt"""
         sentence_newline = self.get_specific_settings("sentence-newline") # Get settings
         dot_index_list = []
-        newline = "\n"
+        newline = self.newline
 
         if sentence_newline is True:
             with open(self.file_path, "r", encoding="utf-8") as file:
