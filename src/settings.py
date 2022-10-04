@@ -15,7 +15,7 @@ class Settings():
         Init json_data to save all settings in settings.json
         """
         self.rule = rule
-        self.json_data = self.__read_json() 
+        self.json_data = self.__read_json()
 
     def __read_json(self):
         """
@@ -31,6 +31,12 @@ class Settings():
         Return data from specific settings object
         """
         return self.json_data[settings_name]
+
+    def get_settings_specific(self, settings_name, rule):
+        """
+        Return data from specific settings object
+        """
+        return self.json_data[settings_name][rule]
 
     def get_current_settings(self):
         """
