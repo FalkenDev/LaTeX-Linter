@@ -19,7 +19,7 @@ class Rules():
 
         self.json_settings_data = json_settings_data # Json Settings
 
-        if self.json_settings_data is None or self.file_path == "undefined": # not loaded correctly
+        if self.json_settings_data is None or self.file_path == "undefined" or self.filename == "undefined": # not loaded correctly
             raise ErrorDataLoaded
 
         self.backup_file() # Done
@@ -45,6 +45,7 @@ class Rules():
 
         setting_value = self.get_specific_settings("emptylines")
         newline = self.newline
+        line_number_list = []
 
         rule_include = [
             r"\part{",
@@ -56,7 +57,6 @@ class Rules():
             r"\subparagraph{"
         ]
 
-        line_number_list = []
         with open(self.file_path, "r", encoding="utf-8") as file1:
             for line_number, line in enumerate(file1, start=1):
                 for word in rule_include:
@@ -85,7 +85,7 @@ class Rules():
             file_list = file.readlines()
 
         for line in line_number_list:
-            file_list.insert(line + append_line, newline)
+            file_list.insert(line + append_line + 1, newline)
             append_line = append_line + 1                                                           # Needs a append line bcs after every "\n" appended then it creates 1 more extra line
 
         with open(self.file_path, "w", encoding="utf-8") as file:
@@ -98,13 +98,14 @@ class Rules():
         """ Find the index number and ignores it """
         newline = self.newline
         line_number_list_remove = []
+
         with open(self.file_path, "r", encoding="utf-8") as files:
             for line_number, line in enumerate(files, start=1):
                 for word in rule_include:
                     if word in line:
                         file = open(self.file_path, encoding="utf-8")
                         content = file.readlines()
-                        mutable_setting_value = setting_value                                   # Reset the mutable to setting value
+                        mutable_setting_value = setting_value
                         counter = 0
                         line_counter = 2
                         while True:
@@ -112,19 +113,19 @@ class Rules():
                                 mutable_setting_value = mutable_setting_value - 1
                                 counter = counter + 1
                                 line_counter = line_counter + 1
-                                if counter > setting_value:                                     # If has more lines then setting_value
-                                    line_number_list_remove.append(line_number - line_counter)       # Append the line number
+                                if counter > setting_value: # If more blanklines the settings value
+                                    line_number_list_remove.append(line_number - line_counter) # Append the line number
                             else:
-                                break                                                           # When no more "\n" is in the line then break it
+                                break
                         file.close()
 
         text = []
         with open(self.file_path, "r", encoding="utf-8") as file:
             for line_number, line in enumerate(file, start=1):
-                if not line_number - 2 in line_number_list_remove: #Kolla om denna stämmer utan (line_number - 2)
+                if not line_number - 2 in line_number_list_remove:
                     text.append(line)
                 else:
-                    continue                                                                    # If the line number is in the remove list, it just continues and not append the text line.
+                    continue
 
         with open(self.file_path, "w", encoding="utf-8") as file:
             text = "".join(text)
@@ -151,11 +152,11 @@ class Rules():
 
         with open(self.file_path, "r", encoding="utf-8") as file1:
             for line_number, line in enumerate(file1, start=1):
-                if line_number <= counter - 1:                                                                                                                        # If the program alredy have checked those index position
-                    pass                                                                                                                                              # Pass, Just get to next line_number and line
-                elif word in line.rstrip() and line.rstrip() not in setting_exclude_string_list:                                                                      # If word is in the line and line is not on exclude list
-                    line_counter = 0                                                                                                                                  # Counter to get to next index line
-                    begin_counter = 1                                                                                                                               # When get to a \begin{}
+                if line_number <= counter - 1: # If the program alredy have checked those index position
+                    pass
+                elif word in line.rstrip() and line.rstrip() not in setting_exclude_string_list: # If word is in the line and line is not on exclude list
+                    line_counter = 0 # Counter to get to next index line
+                    begin_counter = 1 # When get to a \begin{}
                     file2 = open(self.file_path, encoding="utf-8")
                     content = file2.readlines()
                     tab_index_list.append([
@@ -163,10 +164,10 @@ class Rules():
                         ((begin_counter - 1) * tab),
                         (content[line_number + line_counter - 1].strip())
                     ])
-                    while True:                                                                                                                                       # Checks trough the whole \begin to the begins \end
-                        if begin_counter == 0:                                                                                                                        # If the line in index have got to the last \end for the \begin
+                    while True: # Checks trough the whole \begin to the begins \end
+                        if begin_counter == 0: # If the line in index have got to the last \end for the \begin
                             break
-                        if word in content[line_number + line_counter].strip():                                                                                     # If it's a \begin in a \begin
+                        if word in content[line_number + line_counter].strip(): # If it's a \begin in a \begin
                             begin_counter += 1
                             tab_index_list.append([
                                 (line_number + line_counter),
@@ -174,7 +175,7 @@ class Rules():
                                 (content[line_number + line_counter].strip())
                             ])
                             line_counter += 1
-                        elif "\\end" in content[line_number + line_counter].strip():                                                                                  # If it's a \end in a \begin
+                        elif "\\end" in content[line_number + line_counter].strip(): # If it's a \end in a \begin
                             tab_index_list.append([
                                 (line_number + line_counter),
                                 ((begin_counter - 1) * tab),
@@ -182,21 +183,21 @@ class Rules():
                             ])
                             begin_counter -= 1
                             line_counter += 1
-                        else:                                                                # If it dosen't have correct \t ( Tab space )
+                        else: # If it dosen't have correct \t ( Tab space )
                             tab_index_list.append([
                                 (line_number + line_counter),
                                 (begin_counter * tab),
                                 (content[line_number + line_counter].strip())])
                             line_counter += 1
 
-                    counter = line_number + line_counter                                                                                                              # How many index position the program have checked after the while loop
+                    counter = line_number + line_counter # How many index position the program have checked after the while loop
 
         file_list = []
         with open(self.file_path, 'r', encoding="utf-8") as file:
             file_list = file.readlines()
 
         for line in tab_index_list:
-            file_list[line[0]] = line[1] + line[2] + newline                                                                                                                     # Replace the index position with how many tabs, the line and a \n
+            file_list[line[0]] = line[1] + line[2] + newline # Replace the index position with how many tabs, the line and a \n
 
         with open(self.file_path, "w", encoding="utf-8") as file:
             file_list = "".join(file_list)
@@ -208,8 +209,8 @@ class Rules():
         space_value = self.get_specific_settings("comment-space") # Get settings
         space_index_list = []
 
-        with open(self.file_path, "r", encoding="utf-8") as FILE:
-            for line_number, line in enumerate(FILE, start=1):
+        with open(self.file_path, "r", encoding="utf-8") as file:
+            for line_number, line in enumerate(file, start=1):
                 if "%" in line:
                     found_percent = False
                     precent_index = 0
@@ -277,4 +278,4 @@ class Rules():
                 file_list = "".join(file_list)
                 file.write(file_list)
         else:
-            return
+            return # Should i write them to blocks when sentence new line is not true or just ignore / return
