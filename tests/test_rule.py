@@ -2,6 +2,7 @@
 import unittest
 import fnmatch
 import os
+import re
 from src.rules import Rules
 from src.file import File
 from src.settings import Settings
@@ -119,8 +120,8 @@ class TestRule(unittest.TestCase):
             r"\subparagraph{"
         ]
         counter = 0
-        with open("./output/Linted_test_emptylines.tex", "r", encoding="utf-8") as linted_file:
-            for __, line in enumerate(linted_file, start=1):
+        with open("./output/Linted_test_emptylines.tex", "r", encoding="utf-8") as linted_test_file:
+            for __, line in enumerate(linted_test_file, start=1):
                 if line == "\n":
                     counter += 1
                 for word in rule_include:
@@ -132,25 +133,154 @@ class TestRule(unittest.TestCase):
 
         self.tearDown()
 
-    def test_rule_environment_blocks_exclude(self):
-        """ [Rule] Test rule Environment Blocks Exclude """
-        self.setUp()
+    # def test_rule_environment_blocks(self):
+    #     """
+    #     [Rule] Test rule Environment Blocks
+    #     Test if the enviroment blocks have correct tab spaces
+    #     """
+    #     self.setUp("test_enviroment.tex", "standard")
+
+    #     exclude_list = self.settings.get_settings_specific("standard","environment_blocks_exclude")
+    #     setting_exclude_string_list = []
+    #     word = r"\begin{" # Word to look after
+
+    #     for setting in exclude_list:
+    #         setting_exclude_string_list.append(word + setting + "}")
+
+    #     found_word = False
+    #     counter = 0
+    #     #./input/main.tex
+    #     #./output/Linted_test_enviroment.tex
+    #     with open("./output/enviroment.tex", "r", encoding="utf-8") as linted_test_file:
+    #         for index, line in enumerate(linted_test_file, start=1):
+    #             if word in line.strip() and not line.strip() in setting_exclude_string_list:
+    #                 found_word = True
+    #             if found_word:
+    #                 print("")
+    #                 line_length = len(line)
+    #                 if "\\begin{" in line.strip():
+    #                     counter += 1
+    #                     print(not line.startswith((counter - 1) * "    "))
+    #                     print(line.startswith("    ",(1 * (counter - 1)), line_length))
+    #                     print(index)
+    #                     print(counter - 1)
+    #                     if not line.startswith((counter - 1) * "    "):
+    #                         self.fail("Enviroment block rule failed | Index: " + str(index) + "Line: " + line + " | \\begin has to few tab spaces")
+    #                     elif line.startswith("    ",(1 * (counter - 1)), line_length):
+    #                         self.fail("Enviroment block rule failed | Index: " + str(index) + "Line: " + line + " | \\begin has to many tab spaces!")
+    #                 elif "\\end" in line.strip():
+    #                     counter -= 1
+    #                     print(not line.startswith((counter - 1) * "    "))
+    #                     print(line.startswith("\t",(1 * (counter - 1)), line_length))
+    #                     print(index)
+    #                     print(counter)
+    #                     if not line.startswith((counter - 1) * "    "):
+    #                         self.fail("Enviroment block rule failed | Index: " + str(index) + "Line: " + line + " | \\end has to few tab spaces")
+    #                     if line.startswith("    ",(1 * (counter - 1)), line_length):
+    #                         self.fail("Enviroment block rule failed | Index: " + str(index) + "Line: " + line + " | \\end has to many tab spaces!")
+    #                 else:
+    #                     print(index)
+    #                     print(counter)
+    #                     print(line)
+    #                     print(not line.startswith((counter - 1) * "    "))
+    #                     print(line.startswith("    ",(1 * counter), line_length))
+    #                     if not line.startswith((counter - 1) * "    "):
+    #                         self.fail("Enviroment block rule failed | Index: " + str(index) + "Line: " + line + " | \\text has to few tab spaces")
+    #                     if line.startswith("    ",(1 * counter), line_length):
+    #                         print(line)
+    #                         self.fail("Enviroment block rule failed | Index: " + str(index) + "Line: " + line + " | \\text has to many tab spaces!")
+    #                 if counter == 0:
+    #                     found_word = False
 
 
+    #     self.tearDown()
 
+    def test_rule_environment_blocks_with_exclude(self):
+        """
+        [Rule] Test rule Environment Blocks with Exclude.
+        Test if the enviroment blocks dosen't changhe when in exclude list.
+        If it have found over 4 lines with no tab space then it passes and resets to find next exclude block.
+        """
+        self.setUp("test_enviroment.tex", "standard")
+
+        exclude_list = self.settings.get_settings_specific("standard","environment_blocks_exclude")
+        setting_exclude_string_list = []
+        word = r"\begin{" # Word to look after
+        for setting in exclude_list:
+            setting_exclude_string_list.append(word + setting + "}")
+
+        found_exclude_word = False
+        index_counter = 0
+        with open("./output/Linted_test_enviroment.tex", "r", encoding="utf-8") as linted_test_file:
+            for __, line in enumerate(linted_test_file, start=1):
+                if  line.strip() in setting_exclude_string_list:
+                    found_exclude_word = True
+                if found_exclude_word and not line.startswith("\t"):
+                    index_counter += 1
+                elif found_exclude_word and line.startswith("\t"):
+                    found_exclude_word = False
+                    if index_counter > 4:
+                        index_counter = 0
+                    else:
+                        self.fail("Rule Environment Blocks With Exclude FAILED | It have tab space")
         self.tearDown()
 
     def test_rule_comment_space(self):
         """ [Rule] Test rule Comment Space """
-        self.setUp()
-
+        self.setUp("test_comment.tex", "standard")
+        value = self.settings.get_settings_specific("standard","comment-space")
+        with open("./output/Linted_test_comment.tex", "r", encoding="utf-8") as linted_file:
+            for line_index, line in enumerate(linted_file, start=1):
+                if "%" in line:
+                    found_procentage = False
+                    counter = 0
+                    for char_index, char in enumerate(line, start=1):
+                        if "%" in char:
+                            found_procentage = True
+                        if found_procentage:
+                            if counter > value:
+                                self.fail(
+                                        "Comment space rule at line index: " +
+                                        str(line_index) +
+                                        " Char: " +
+                                        str(char_index) +
+                                        " has less space then settings value"
+                                    )
+                            if char == " ":
+                                counter += 1
+                            elif char.isalpha():
+                                if counter < value and counter != 0: # != is bcs those who have % and no space with a word is word that is just out commented to use soon so no real comment
+                                    self.fail(
+                                        "Comment space rule at line index: " +
+                                        str(line_index) +
+                                        " Char: " +
+                                        str(char_index) +
+                                        " has less space then settings value"
+                                    )
+                                break
 
 
         self.tearDown()
 
     def test_rule_sentence_newline(self):
         """ [Rule] Test rule Sentence Newline """
-        self.setUp()
+        self.setUp("test_sentence_newline.tex", "standard")
+        with open("./output/Linted_test_sentence_newline.tex", "r", encoding="utf-8") as linted_file:
+            for line_index, line in enumerate(linted_file, start=1):
+                if "." in line:
+                    counter = 0
+                    found_dot = False
+                    for char_index, char in enumerate(line, start=1):
+                        if char == ".":
+                            counter += 1
+                            found_dot = True
+                        elif found_dot and char == " ":
+                            print("-----------------")
+                            print("Line index: " + str(line_index))
+                            print("Char index:" + str(char_index))
+                            print("Char: " + char)
+                            print("-----------------")
+                            found_dot = False
 
 
 
