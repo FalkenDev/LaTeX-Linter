@@ -161,16 +161,37 @@ In malesuada ullamcorper urna, sed dapibus diam sollicitudin non. Donec elit odi
 %	IN-TEXT ELEMENT EXAMPLES CHAPTER
 %----------------------------------------------------------------------------------------
 
-
-
-
-
 \chapter{In-text Element Examples}
 
 \section{Referencing Publications}\index{Citation}
 This statement requires citation \cite{Smith:2022jd}; this one is more specific \cite[162]{Smith:2021qr}.
 
 %------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -189,16 +210,16 @@ Lists are useful to present information in a concise and/or ordered way.
 
 \subsection{Numbered List}\index{Lists!Numbered List}
 
-			\begin{enumerate}
-			\item First numbered item
-					\begin{enumerate}
-\item First indented numbered item
-			\item Second indented numbered item
+\begin{enumerate}
+	\item First numbered item
+	\begin{enumerate}
+		\item First indented numbered item
+		\item Second indented numbered item
 		\begin{enumerate}
-	\item First second-level indented numbered item
-										\end{enumerate}
+			\item First second-level indented numbered item
+			\end{enumerate}
 	\end{enumerate}
-								\item Second numbered item
+		\item Second numbered item
 \item Third numbered item
 \end{enumerate}
 
@@ -210,7 +231,7 @@ Lists are useful to present information in a concise and/or ordered way.
 \item First indented bullet point item
 \item Second indented bullet point item
 		\begin{itemize}
-			\item First second-level indented bullet point item
+													\item First second-level indented bullet point item
 		\end{itemize}
 	\end{itemize}
 	\item Second bullet point item
@@ -296,13 +317,12 @@ A definition can be mathematical or it could define a concept.
 \end{definition}
 
 %------------------------------------------------
-
 \section{Notations}\index{Notations}
 
 \begin{notation} % Specify a name/title in square brackets, or leave them out for no title
 	Given an open subset $G$ of $\mathbb{R}^n$, the set of functions $\varphi$ are:
 	\begin{enumerate}
-		\item Bounded support $G$;
+							\item Bounded support $G$;
 	\item Infinitely differentiable;
 	\end{enumerate}
 	a vector space is denoted by $\mathcal{D}(G)$.
