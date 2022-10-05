@@ -154,7 +154,7 @@ class Rules():
             for line_number, line in enumerate(file1, start=1):
                 if line_number <= counter - 1: # If the program alredy have checked those index position
                     pass
-                elif word in line.rstrip() and line.rstrip() not in setting_exclude_string_list: # If word is in the line and line is not on exclude list
+                elif word in line.rstrip() and line.rstrip() not in setting_exclude_string_list and not line.startswith("%"): # If word is in the line and line is not on exclude list and it's not a comment block
                     line_counter = 0 # Counter to get to next index line
                     begin_counter = 1 # When get to a \begin{}
                     file2 = open(self.file_path, encoding="utf-8")
