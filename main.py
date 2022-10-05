@@ -112,10 +112,12 @@ def main():
 
             elif choice == "3":
                 try:
-                    filename = "main.tex"
-                    current_file = "./input/main.tex"
-                    settings_json_data = settings_class.get_settings(settings_class.get_current_settings())
-                    Rules(filename, current_file, settings_json_data)
+                    file_path = file_class.get_current_filename()
+                    filename = file_class.get_current_file()
+                    settings_json_data = settings_class.get_settings(
+                        settings_class.get_current_settings()
+                    )
+                    Rules(filename, file_path, settings_json_data)
                     break
                 except ErrorDataLoaded:
                     print("\n The file and settings have not been loaded correctly!")
