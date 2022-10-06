@@ -60,7 +60,12 @@ class Settings():
         json.dump(self.json_data, jsonfile)
         jsonfile.close()
         self.json_data = self.__read_json()
-        return GREEN + " Setting rule: " + str(rule) + " has updated to have value: " + str(custom_input) + END_COLOR
+        return ( GREEN +
+            " Setting rule: " +
+            str(rule) +
+            " has updated to have value: " +
+            str(custom_input) + END_COLOR
+        )
 
     def edit_enviroment_blocks_exclude_add(self, custom_input):
         """
@@ -76,7 +81,12 @@ class Settings():
         json.dump(self.json_data, jsonfile)
         jsonfile.close()
         self.json_data = self.__read_json()
-        return GREEN + " Setting rule: environment_blocks_exclude has added: " + str(custom_input) + " to the list." + END_COLOR
+        return ( GREEN +
+            " Setting rule: environment_blocks_exclude has added: "
+            + str(custom_input) +
+            " to the list." +
+            END_COLOR
+        )
 
     def edit_enviroment_blocks_exclude_remove(self, custom_input):
         """
@@ -91,5 +101,9 @@ class Settings():
                 json.dump(self.json_data, jsonfile)
                 jsonfile.close()
                 self.json_data = self.__read_json()
-                return GREEN + " Setting rule: environment_blocks_exclude has removed: " + str(custom_input) + " from the list." + END_COLOR
+                return ( GREEN +
+                    " Setting rule: environment_blocks_exclude has removed: " +
+                    str(custom_input) + " from the list." +
+                    END_COLOR
+                )
         raise DontExists
