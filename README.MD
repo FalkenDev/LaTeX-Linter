@@ -21,6 +21,8 @@ The linter ensures common stylistic and configurable rules for TeX files and, th
 ***Python3 Version: Python 3.8.10***
 ### File
 **--- Press 1 in main menu in terminal ---**
+
+
 1 | Specific File - Enter which file u want to use from input folder. All the files that are displaying in terminal can be used.
 
 
@@ -56,8 +58,14 @@ Start linting the file with the specific settings
 
 ## Contact
 If you have any questions?
+
+
 Reach me at:
+
+
 <falkendev@gmail.com>
+
+
 <https://www.twitch.tv/falkendev>
 ## License
 [![linting: pylint](https://img.shields.io/badge/linting-pylint-yellowgreen)](https://github.com/PyCQA/pylint)
