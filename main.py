@@ -118,7 +118,8 @@ def main():
                         settings_class.get_current_settings()
                     )
                     Rules(filename, file_path, settings_json_data)
-                    break
+                    print("\n The file: " + filename + " has been validated and linted with settings: " + settings_class.get_current_settings())
+                    input("\n Press enter to go back to main menu...")
                 except ErrorDataLoaded:
                     print("\n The file and settings have not been loaded correctly!")
                     input("\n Press enter to go back to rule menu...")
