@@ -13,7 +13,7 @@ The linter ensures common stylistic and configurable rules for TeX files and, th
 - [License](#license)
 ## Download
 ### Docker
-> docker run -it --name mazeclient falkendev/latex-linter:latest
+> docker run -it --name linterclient falkendev/latex-linter:latest
 ## Usage
 > python3 main.py
 
