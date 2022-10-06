@@ -16,6 +16,8 @@ The linter ensures common stylistic and configurable rules for TeX files and, th
 > docker run -it --name mazeclient falkendev/latex-linter:latest
 ## Usage
 > python3 main.py
+
+
 *** Python3 Version: Python 3.8.10 ***
 ### File
 **--- Press 1 in main menu in terminal ---**
