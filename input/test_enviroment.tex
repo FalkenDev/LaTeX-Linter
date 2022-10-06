@@ -2,13 +2,6 @@
 %   Test module for Enviroment blocks rule   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%----------------------------------------------------------------------------------------
-%	ABSTRACT
-%----------------------------------------------------------------------------------------
-
-\Abstract{Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Ut purus elit, vestibulum ut, placerat ac, adipiscing vitae, felis. Curabitur dictum gravida mauris. Nam arcu libero, nonummy eget, consectetuer id, vulputate a, magna. Donec vehicula augue eu neque. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Mauris ut leo. Cras viverra metus rhoncus sem. Nulla et lectus vestibulum urna fringilla ultrices. Phasellus eu tellus sit amet tortor gravida placerat. Integer sapien est, iaculis in, pretium quis, viverra ac, nunc. Praesent eget sem vel leo ultrices bibendum. Aenean faucibus. Morbi dolor nulla, malesuada eu, pulvinar at, mollis ac, nulla. Curabitur auctor semper nulla. Donec varius orci eget risus. Duis nibh mi, congue eu, accumsan eleifend, sagittis quis, diam. Duis eget orci sit amet orci dignissim rutrum.}
-
-%----------------------------------------------------------------------------------------
 
 \begin{document}
 
@@ -47,6 +40,34 @@
 \end{equation}
 
 \lipsum[5] % Dummy text
+
+\begin{enumerate}
+\item First numbered item
+	\begin{enumerate}
+			\item First indented numbered item
+		\item Second indented numbered item
+		\begin{enumerate}
+			\item First second-level indented numbered item
+			\end{enumerate}
+	\end{enumerate}
+			\item Second numbered item
+\item Third numbered item
+\end{enumerate}
+
+\subsection{Bullet Point List}\index{Lists!Bullet Points}
+
+	\begin{itemize}
+	\item First bullet point item
+					\begin{itemize}
+\item First indented bullet point item
+\item Second indented bullet point item
+		\begin{itemize}
+													\item First second-level indented bullet point item
+		\end{itemize}
+	\end{itemize}
+	\item Second bullet point item
+	\item Third bullet point item
+				\end{itemize}
 
 \begin{enumerate}[noitemsep] % [noitemsep] removes whitespace between the items for a compact look
 \item First item in a list
