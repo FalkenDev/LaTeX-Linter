@@ -74,19 +74,19 @@ class TestSettings(unittest.TestCase):
         """ [Edit Settings] Test edit comment space rule setting on customized settings """
         self.setUp()
 
-        self.settings.edit_custom_settings("comment-space", 50)
+        self.settings.edit_custom_settings("comment-space", 4)
 
         customized_settings = self.settings.get_settings("customized")
 
-        self.assertEqual(customized_settings["comment-space"], 50)
+        self.assertEqual(customized_settings["comment-space"], 4)
         self.assertIsInstance(customized_settings["comment-space"], int)
 
 
-        self.settings.edit_custom_settings("comment-space", 150)
+        self.settings.edit_custom_settings("comment-space", 2)
 
         customized_settings = self.settings.get_settings("customized")
 
-        self.assertEqual(customized_settings["comment-space"], 150)
+        self.assertEqual(customized_settings["comment-space"], 2)
         self.assertIsInstance(customized_settings["comment-space"], int)
 
         self.tearDown()
