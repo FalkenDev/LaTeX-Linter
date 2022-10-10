@@ -167,8 +167,6 @@ class Rules():
         for setting in setting_list:
             setting_exclude_string_list.append(word + setting + "}")
 
-        print(setting_exclude_string_list)
-
         with open(self.file_path, "r", encoding="utf-8") as file1:
             for line_number, line in enumerate(file1, start=1):
                 if line_number <= counter - 1: # If the program alredy have checked those index position
