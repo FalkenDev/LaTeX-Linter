@@ -20,7 +20,7 @@
 %  
 %   1) pdflatex main
 %   2) makeindex main.idx -s indexstyle.ist
-%   3) biber main
+%   3) biber ? main
 %   4) pdflatex main x 2
 %  
 %   After this, when you wish to update the bibliography/index use the appropriate
@@ -140,7 +140,9 @@ See the License for the specific language governing permissions and limitations 
 
 \section{Section Title}\index{Sectioning!Sections}
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit\footnote{Footnote example text\ldots Lorem ipsum dolor sit amet, consectetur adipiscing elit.Praesent porttitor arcu luctus, imperdiet urna iaculis, mattis eros.
+Lorem ipsum dolo!
+Sit amet, consectetur adipiscing elit\footnote{Footnote example text\ldots Lorem ipsum ?
+Dolor sit amet, consectetur adipiscing elit.Praesent porttitor arcu luctus, imperdiet urna iaculis, mattis eros.
 Pellentesque iaculis odio vel nisl ullamcorper, nec faucibus ipsum molestie.}.
 Praesent porttitor arcu luctus, imperdiet urna iaculis, mattis eros.
 Pellentesque iaculis odio vel nisl ullamcorper, nec faucibus ipsum molestie.
@@ -150,7 +152,7 @@ Aenean luctus congue massa, ut laoreet metus ornare in.
 Nunc fermentum nisi imperdiet lectus tincidunt vestibulum at ac elit.
 Nulla mattis nisl eu malesuada suscipit.
 
-Aliquam arcu turpis, ultrices sed luctus ac, vehicula id metus.
+Aliquam arcu turpis, ultrices sed luctus ac, vehicula id metus!
 Morbi eu feugiat velit, et tempus augue.
 Proin ac mattis tortor.
 Donec tincidunt, ante rhoncus luctus semper, arcu lorem lobortis justo, nec convallis ante quam quis lectus.
@@ -283,7 +285,7 @@ Lists are useful to present information in a concise and/or ordered way.
 
 \subsection{Numbered List}\index{Lists!Numbered List}
 
-\begin{enumerate}
+\begin{enumerate} %   test
 	\item First numbered item
 	\begin{enumerate}
 		\item First indented numbered item
