@@ -57,7 +57,7 @@ Start linting the file with the specific settings
 - V3.0.0 - Sprint 3 - Everything is Unit tested, code improvments, and software can be use in Docker and downloadable at docker.hub
 
 ## Contact
-If you have any questions?
+Have any questions?
 
 
 Reach me at:
@@ -67,5 +67,5 @@ Reach me at:
 
 
 <https://www.twitch.tv/falkendev>
-## License
+## License And Tools
 [![linting: pylint](https://img.shields.io/badge/linting-pylint-yellowgreen)](https://github.com/PyCQA/pylint)
