@@ -12,4 +12,4 @@ class DontExists(Exception):
     """ If user has inputed something that dosen't exists """
 
 class ErrorDataLoaded(Exception):
-    """ If settings.json is not loaded correctly """
+    """ If settings.json is not loaded correctly or a file name / path has not been loaded """
