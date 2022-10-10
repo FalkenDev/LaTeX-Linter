@@ -20,7 +20,7 @@
 %
 % 1) pdflatex main
 % 2) makeindex main.idx -s indexstyle.ist
-% 3) biber main
+% 3) biber ? main
 % 4) pdflatex main x 2
 %
 % After this, when you wish to update the bibliography/index use the appropriate
@@ -131,9 +131,9 @@
 
 \section{Section Title}\index{Sectioning!Sections}
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit\footnote{Footnote example text\ldots Lorem ipsum dolor sit amet, consectetur adipiscing elit.Praesent porttitor arcu luctus, imperdiet urna iaculis, mattis eros. Pellentesque iaculis odio vel nisl ullamcorper, nec faucibus ipsum molestie.}. Praesent porttitor arcu luctus, imperdiet urna iaculis, mattis eros. Pellentesque iaculis odio vel nisl ullamcorper, nec faucibus ipsum molestie. Sed dictum nisl non aliquet porttitor. Etiam vulputate arcu dignissim, finibus sem et, viverra nisl. Aenean luctus congue massa, ut laoreet metus ornare in. Nunc fermentum nisi imperdiet lectus tincidunt vestibulum at ac elit. Nulla mattis nisl eu malesuada suscipit.
+Lorem ipsum dolo! Sit amet, consectetur adipiscing elit\footnote{Footnote example text\ldots Lorem ipsum ? Dolor sit amet, consectetur adipiscing elit.Praesent porttitor arcu luctus, imperdiet urna iaculis, mattis eros. Pellentesque iaculis odio vel nisl ullamcorper, nec faucibus ipsum molestie.}. Praesent porttitor arcu luctus, imperdiet urna iaculis, mattis eros. Pellentesque iaculis odio vel nisl ullamcorper, nec faucibus ipsum molestie. Sed dictum nisl non aliquet porttitor. Etiam vulputate arcu dignissim, finibus sem et, viverra nisl. Aenean luctus congue massa, ut laoreet metus ornare in. Nunc fermentum nisi imperdiet lectus tincidunt vestibulum at ac elit. Nulla mattis nisl eu malesuada suscipit.
 
-Aliquam arcu turpis, ultrices sed luctus ac, vehicula id metus. Morbi eu feugiat velit, et tempus augue. Proin ac mattis tortor. Donec tincidunt, ante rhoncus luctus semper, arcu lorem lobortis justo, nec convallis ante quam quis lectus. Aenean tincidunt sodales massa, et hendrerit tellus mattis ac. Sed non pretium nibh. Donec cursus maximus luctus. Vivamus lobortis eros et massa porta porttitor.
+Aliquam arcu turpis, ultrices sed luctus ac, vehicula id metus! Morbi eu feugiat velit, et tempus augue. Proin ac mattis tortor. Donec tincidunt, ante rhoncus luctus semper, arcu lorem lobortis justo, nec convallis ante quam quis lectus. Aenean tincidunt sodales massa, et hendrerit tellus mattis ac. Sed non pretium nibh. Donec cursus maximus luctus. Vivamus lobortis eros et massa porta porttitor.
 
 \subsection{Subsection Title}\index{Sectioning!Subsections}
 
@@ -210,13 +210,13 @@ Lists are useful to present information in a concise and/or ordered way.
 
 \subsection{Numbered List}\index{Lists!Numbered List}
 
-\begin{enumerate}
-	\item First numbered item
-	\begin{enumerate}
-		\item First indented numbered item
-		\item Second indented numbered item
+	\begin{enumerate} % test
+			\item First numbered item
+			\begin{enumerate}
+								\item First indented numbered item
+			\item Second indented numbered item
 		\begin{enumerate}
-			\item First second-level indented numbered item
+							\item First second-level indented numbered item
 			\end{enumerate}
 	\end{enumerate}
 		\item Second numbered item
@@ -227,7 +227,7 @@ Lists are useful to present information in a concise and/or ordered way.
 
 	\begin{itemize}
 	\item First bullet point item
-					\begin{itemize}
+	\begin{itemize}
 \item First indented bullet point item
 \item Second indented bullet point item
 		\begin{itemize}
@@ -237,13 +237,12 @@ Lists are useful to present information in a concise and/or ordered way.
 	\item Second bullet point item
 	\item Third bullet point item
 				\end{itemize}
-
 \subsection{Descriptions and Definitions}\index{Lists!Descriptions and Definitions}
 
 \begin{description}
 	\item[Name] Description
 \item[Word] Definition
-	\item[Comment] Elaboration
+				\item[Comment] Elaboration
 \end{description}
 
 %------------------------------------------------
