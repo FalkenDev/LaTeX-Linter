@@ -13,36 +13,39 @@ The linter ensures common stylistic and configurable rules for TeX files and, th
 - [License](#license)
 ## Download
 ### Docker
-> docker run -it --name linterclient falkendev/latex-linter:latest
+> docker run -it -v "$(pwd)/$1":/input  falkendev/latex-linter:1.0
+>
+> "$(pwd)/$1" = Your path
+
 ## Usage
 > python3 main.py
 
 
 ***Python3 Version: Python 3.8.10***
 ### File
-**--- Press 1 in main menu in terminal ---**
+#### Press 1 in main menu in terminal
 
 
-1 | Specific File - Enter which file u want to use from input folder. All the files that are displaying in terminal can be used.
+> | Specific File - Enter which file u want to use from input folder. All the files that are displaying in terminal can be used.
 
 
-q | Go Back - Return to main menu.
+> | Go Back - Return to main menu.
 ### Settings
---- Press 2 in main menu in terminal ---
+#### Press 2 in main menu in terminal
 
 
-1 | Edit Customized settings - Choose which setting rule you want to change value of for customized settings.
+> 1 | Edit Customized settings - Choose which setting rule you want to change value of for customized settings.
 
 
-2 | Change to Customized settings - Use Customized settings for the Linter.
+> 2 | Change to Customized settings - Use Customized settings for the Linter.
 
 
-2 | Change to Standard settings - Use Standard settings for the Linter.
+> 2 | Change to Standard settings - Use Standard settings for the Linter.
 
 
-q | Go Back - Return to main menu.
+> q | Go Back - Return to main menu.
 ### Linter
-**--- Press 3 in main menu in terminal ---**
+#### Press 3 in main menu in terminal
 
 
 Start linting the file with the specific settings
