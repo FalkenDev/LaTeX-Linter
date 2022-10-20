@@ -14,11 +14,11 @@ The linter ensures common stylistic and configurable rules for TeX files and, th
 ## About
 A terminal based program that ensures common stylistic and configurable rules for TeX files.
 
-Rules that check and fix:
-* Intention (tabs or spaces) for environment blocks (e.g., \begin{itemize} … \end{itemize}; ** ( Can be configurable which environments blocks should be excluded ) **
-* Newline after a sentence for better git support ** ( Can be set to True or False ) **
-* Format comments (space after %)** ( The space value is adjustable ) **
-* Blank lines before section, chapter, etc.** ( The Blank lines value is adjustable ) **
+Rules that check and fix TeX files:
+* Intention (tabs or spaces) for environment blocks (e.g., \begin{itemize} … \end{itemize}; **( Can be configurable which environments blocks should be excluded )**
+* Newline after a sentence for better git support **( Can be set to True or False )**
+* Format comments (space after %)**( The space value is adjustable )**
+* Blank lines before section, chapter, etc.**( The Blank lines value is adjustable )**
 *** Every rule can be customized in either settings.json or in terminal ***
 ## Download
 ### Docker
