@@ -18,12 +18,12 @@ The linter ensures common stylistic and configurable rules for TeX files and, th
 >
 > docker run -it -v $(pwd)/***Your_input_map_here***:/latex-linter/input -v $(pwd)/***Your_output_map_here***:/latex-linter/output falkendev/latex-linter:1.0
 >
-#### Info
-$(pwd) = returns the path to the map you are in
-
-The first volume you put in the map with your TeX files you want to lint ( Change ***Your_input_map_here*** to your map ).
-
-The second volume you put the map you whant to get your Linted TeX files in ( Change ***Your_output_map_here*** to your map ).
+> #### Info
+> $(pwd) = returns the path to the map you are in
+>
+> The first volume you put in the map with your TeX files you want to lint ( Change ***Your_input_map_here*** to your map ).
+>
+> The second volume you put the map you whant to get your Linted TeX files in ( Change ***Your_output_map_here*** to your map ).
 
 
 ## Usage
