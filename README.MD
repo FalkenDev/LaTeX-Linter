@@ -2,15 +2,24 @@
 
 ![falken](https://github.com/FalkenDev/LaTeX-Linter/blob/main/linter.png?raw=true)
 
-The linter ensures common stylistic and configurable rules for TeX files and, therefore, eases the discussion on, merging, and exchange of TeX content. The software is going to written in Python and used in terminal to terminate the tasks.
+The linter ensures common stylistic and configurable rules for TeX files and, therefore, eases the discussion on, merging, and exchange of TeX content. The software is written in Python and used in terminal to terminate the tasks.
 
 ## Content
+- [About](#about)
 - [Download](#download)
 - [Usage](#usage)
-- [Platform](#platform)
 - [Version](#version)
 - [Contact](#contact)
 - [License](#license)
+## About
+A terminal based program that ensures common stylistic and configurable rules for TeX files.
+
+Rules that check and fix:
+* Intention (tabs or spaces) for environment blocks (e.g., \begin{itemize} … \end{itemize}; ** ( Can be configurable which environments blocks should be excluded ) **
+* Newline after a sentence for better git support ** ( Can be set to True or False ) **
+* Format comments (space after %)** ( The space value is adjustable ) **
+* Blank lines before section, chapter, etc.** ( The Blank lines value is adjustable ) **
+*** Every rule can be customized in either settings.json or in terminal ***
 ## Download
 ### Docker
 >
@@ -61,7 +70,6 @@ The linter ensures common stylistic and configurable rules for TeX files and, th
 
 
 ***!OPS! Needs atleast to choose which file to use in terminal for the linter to run !OPS!***
-## Platform
 ## Version
 
 - V1.0.0 - Sprint 1 - Added Menu, Settings and File class ( Unit tested )
