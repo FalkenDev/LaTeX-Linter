@@ -14,7 +14,7 @@ The linter ensures common stylistic and configurable rules for TeX files and, th
 ## Download
 ### Docker
 >
-> docker run -it -v "$(pwd)/" Your input map here :/latex-linter/input -v $(pwd)/ Your output map here :/latex-linter/output falkendev/latex-linter:1.0
+> docker run -it -v "$(pwd)/"***Your input map here***:/latex-linter/input -v $(pwd)/ Your output map here :/latex-linter/output falkendev/latex-linter:1.0
 >
 > $(pwd) = returns the path to the map you are in
 >
