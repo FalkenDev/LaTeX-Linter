@@ -264,7 +264,4 @@ class TestRule(unittest.TestCase):
                             found_dot = False
                         elif found_dot and re.search("[ ]", char):
                             self.fail("Sentence newline rule failed at line: " + str(line_index))
-
-
-
         self.tearDown()
