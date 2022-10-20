@@ -95,11 +95,11 @@ class TestSettings(unittest.TestCase):
         """ [Edit Settings] Test edit emptylines rule setting on customized settings """
         self.setUp()
 
-        self.settings.edit_custom_settings("emptylines", 25)
+        self.settings.edit_custom_settings("emptylines", 4)
 
         customized_settings = self.settings.get_settings("customized")
 
-        self.assertEqual(customized_settings["emptylines"], 25)
+        self.assertEqual(customized_settings["emptylines"], 4)
         self.assertIsInstance(customized_settings["emptylines"], int)
 
         self.tearDown()
