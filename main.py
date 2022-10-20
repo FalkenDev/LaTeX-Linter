@@ -1,8 +1,13 @@
 """
 Main.py
 """
+# pylint: disable=too-many-branches
+# pylint: disable=too-many-statements
+# pylint: disable=too-many-nested-blocks
 import time
-from src.menu import menu_start, menu_settings, menu_customize_settings, edit_sentence_newline, edit_comment_space, edit_emptylines, edit_enviroment_blocks_exclude, change_file_function
+from src.menu import (menu_start, menu_settings, menu_customize_settings,
+edit_sentence_newline, edit_comment_space, edit_emptylines,
+edit_enviroment_blocks_exclude, change_file_function)
 from src.file import File
 from src.rules import Rules
 from src.settings import Settings
@@ -42,7 +47,7 @@ def main():
                     try:
                         if choice_rule == "q":
                             break
-                        elif choice_rule == "1":
+                        if choice_rule == "1":
                             # Edit customize settings
                             while True:
                                 try:
@@ -120,8 +125,16 @@ def main():
                         settings_class.get_current_settings()
                     )
                     Rules(filename, file_path, settings_json_data)
-                    print("\n Took: " + str(time.time() - start_time)[:6] + " seconds to Lint the TeX file")
-                    print("\n The file: " + filename + " has been validated and linted with settings: " + settings_class.get_current_settings())
+                    print(
+                        GREEN + "\n Took: " +
+                        str(time.time() - start_time)[:6] +
+                        " seconds to Lint the TeX file" + END_COLOR
+                    )
+                    print(
+                        GREEN + "\nThe file: " + filename +
+                        " has been validated and linted with settings: " +
+                        settings_class.get_current_settings() + END_COLOR
+                    )
                     input("\n Press enter to go back to main menu...")
                 except ErrorDataLoaded:
                     print("\n The file and settings have not been loaded correctly!")
