@@ -12,7 +12,7 @@ from src.errors import ErrorDataLoaded
 
 class TestRule(unittest.TestCase):
     """ Submodule for unittests, derives from unittest.TestCase """
-    def setUp(self, set_file = "main.tex", set_settings = "standard"):
+    def setUp(self, set_file = "test_main.tex", set_settings = "standard"):
         """ [Rule] Setup File, Settings and Rule class for the Rule class """
         # Arrange
         self.file = File()
@@ -65,11 +65,11 @@ class TestRule(unittest.TestCase):
 
 
     def test_backup_file(self):
-        """ [Rule] Test to backup article_3.tex file """
-        self.setUp("article_3.tex", "standard")
+        """ [Rule] Test to backup test_article.tex file """
+        self.setUp("test_article.tex", "standard")
         count = 0
         for file in os.listdir('./output'):
-            if fnmatch.fnmatch(file, 'Linted_article_3.tex'):
+            if fnmatch.fnmatch(file, 'Linted_test_article.tex'):
                 count += 1
 
         if count != 1:
