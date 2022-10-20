@@ -1,6 +1,7 @@
 """
 Main.py
 """
+import time
 from src.menu import menu_start, menu_settings, menu_customize_settings, edit_sentence_newline, edit_comment_space, edit_emptylines, edit_enviroment_blocks_exclude, change_file_function
 from src.file import File
 from src.rules import Rules
@@ -112,12 +113,14 @@ def main():
 
             elif choice == "3":
                 try:
+                    start_time = time.time()
                     file_path = file_class.get_current_filename()
                     filename = file_class.get_current_file()
                     settings_json_data = settings_class.get_settings(
                         settings_class.get_current_settings()
                     )
                     Rules(filename, file_path, settings_json_data)
+                    print("\n Took: " + str(time.time() - start_time)[:6] + " seconds to Lint the TeX file")
                     print("\n The file: " + filename + " has been validated and linted with settings: " + settings_class.get_current_settings())
                     input("\n Press enter to go back to main menu...")
                 except ErrorDataLoaded:
