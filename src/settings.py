@@ -55,10 +55,9 @@ class Settings():
         Edit rules on customized settings
         Takes what rule want to be changed and the user input
         """
-        jsonfile = open("./settings/settings.json", "w", encoding="utf-8")
-        self.json_data["customized"][rule] = custom_input
-        json.dump(self.json_data, jsonfile)
-        jsonfile.close()
+        with open("./settings/settings.json", "w", encoding="utf-8") as jsonfile:
+            self.json_data["customized"][rule] = custom_input
+            json.dump(self.json_data, jsonfile)
         self.json_data = self.__read_json()
         return ( GREEN +
             " Setting rule: " +
@@ -72,14 +71,12 @@ class Settings():
         Adds user input to list in enviroment_blocks_exclude in json file
         Raise exception AlredyExists if user input is alredy in the exclude list
         """
-        jsonfile = open("./settings/settings.json", "w", encoding="utf-8")
-
-        for block in self.json_data["customized"]["environment_blocks_exclude"]:
-            if block == custom_input:
-                raise AlredyExists
-        self.json_data["customized"]["environment_blocks_exclude"].append(custom_input)
-        json.dump(self.json_data, jsonfile)
-        jsonfile.close()
+        with open("./settings/settings.json", "w", encoding="utf-8") as jsonfile:
+            for block in self.json_data["customized"]["environment_blocks_exclude"]:
+                if block == custom_input:
+                    raise AlredyExists
+            self.json_data["customized"]["environment_blocks_exclude"].append(custom_input)
+            json.dump(self.json_data, jsonfile)
         self.json_data = self.__read_json()
         return ( GREEN +
             " Setting rule: environment_blocks_exclude has added: "
