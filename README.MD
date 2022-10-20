@@ -13,9 +13,14 @@ The linter ensures common stylistic and configurable rules for TeX files and, th
 - [License](#license)
 ## Download
 ### Docker
-> docker run -it -v "$(pwd)/$1":/input  falkendev/latex-linter:1.0
 >
-> "$(pwd)/$1" = Your path
+> docker run -it -v $(pwd)/" Your input map here ":/latex-linter/input -v $(pwd)/ Your output map here :/latex-linter/output falkendev/latex-linter:1.0
+>
+> $(pwd) = returns the path to the map you are in
+>
+> The first volume you put in the map with your TeX files you want to lint.
+> The second volume you put the map you whant to get your Linted TeX files in.
+>
 
 ## Usage
 > python3 main.py
@@ -26,10 +31,10 @@ The linter ensures common stylistic and configurable rules for TeX files and, th
 #### Press 1 in main menu in terminal
 
 
-> | Specific File - Enter which file u want to use from input folder. All the files that are displaying in terminal can be used.
+> 1 | Specific File - Enter which file u want to use from input folder. All the files that are displaying in terminal can be used.
 
 
-> | Go Back - Return to main menu.
+> q | Go Back - Return to main menu.
 ### Settings
 #### Press 2 in main menu in terminal
 
@@ -48,7 +53,7 @@ The linter ensures common stylistic and configurable rules for TeX files and, th
 #### Press 3 in main menu in terminal
 
 
-Start linting the file with the specific settings
+> Start linting the file with the specific settings
 
 
 ***!OPS! Needs atleast to choose which file to use in terminal for the linter to run !OPS!***
@@ -57,7 +62,7 @@ Start linting the file with the specific settings
 
 - V1.0.0 - Sprint 1 - Added Menu, Settings and File class ( Unit tested )
 - V2.0.0 - Sprint 2 - All the Linter Rules
-- V3.0.0 - Sprint 3 - Everything is Unit tested, code improvments, and software can be use in Docker and downloadable at docker.hub
+- V3.0.0 - Sprint 3 - Everything is Unit tested, code improvments, and software can be used in Docker and downloadable at docker.hub
 
 ## Contact
 Have any questions?
