@@ -131,7 +131,7 @@ def main():
                         " seconds to Lint the TeX file" + END_COLOR
                     )
                     print(
-                        GREEN + "\nThe file: " + filename +
+                        GREEN + "\n The file: " + filename +
                         " has been validated and linted with settings: " +
                         settings_class.get_current_settings() + END_COLOR
                     )
