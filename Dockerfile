@@ -9,8 +9,8 @@ WORKDIR /latex-linter
 
 COPY src ./src
 COPY settings/settings.json ./settings/settings.json
-COPY output ./output
 COPY input ./input
+COPY output ./output
 COPY tests ./tests
 COPY main.py .
 COPY test.py .
