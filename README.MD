@@ -35,6 +35,8 @@ Rules that check and fix TeX files:
 > * The first volume you put in the map with your TeX files you want to lint ( Change ***Your_input_map_here*** to your map ).
 >
 > * The second volume you put the map you whant to get your Linted TeX files in ( Change ***Your_output_map_here*** to your map ).
+>
+> ***You need to have a folder with your latex files that you want to lint and a output file where the linted files goes***
 
 
 ## Usage
